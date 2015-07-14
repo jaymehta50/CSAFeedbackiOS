@@ -18,6 +18,7 @@
 		693AD80F1B51BC4500B82947 /* TableEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693AD80E1B51BC4500B82947 /* TableEventsTableViewController.swift */; };
 		69E6E5921B52BA9D003E9A60 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E6E5911B52BA9C003E9A60 /* SyncManager.swift */; };
 		D47A32351B555DD70065CF02 /* feedback.sql in Resources */ = {isa = PBXBuildFile; fileRef = D47A32341B555DD70065CF02 /* feedback.sql */; };
+		D47A32371B556FAD0065CF02 /* FeedbackItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47A32361B556FAD0065CF02 /* FeedbackItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		693AD80E1B51BC4500B82947 /* TableEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableEventsTableViewController.swift; sourceTree = "<group>"; };
 		69E6E5911B52BA9C003E9A60 /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		D47A32341B555DD70065CF02 /* feedback.sql */ = {isa = PBXFileReference; lastKnownFileType = file; name = feedback.sql; path = ../feedback.sql; sourceTree = "<group>"; };
+		D47A32361B556FAD0065CF02 /* FeedbackItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				693AD8071B51AECF00B82947 /* DBManager.h */,
 				693AD8081B51AECF00B82947 /* DBManager.m */,
 				693AD7E81B51ADDF00B82947 /* ViewController.swift */,
+				D47A32361B556FAD0065CF02 /* FeedbackItemViewController.swift */,
 				693AD7EA1B51ADDF00B82947 /* Main.storyboard */,
 				693AD80E1B51BC4500B82947 /* TableEventsTableViewController.swift */,
 				69E6E5911B52BA9C003E9A60 /* SyncManager.swift */,
@@ -237,6 +240,7 @@
 				69E6E5921B52BA9D003E9A60 /* SyncManager.swift in Sources */,
 				693AD7E91B51ADDF00B82947 /* ViewController.swift in Sources */,
 				693AD7E71B51ADDF00B82947 /* AppDelegate.swift in Sources */,
+				D47A32371B556FAD0065CF02 /* FeedbackItemViewController.swift in Sources */,
 				693AD80F1B51BC4500B82947 /* TableEventsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

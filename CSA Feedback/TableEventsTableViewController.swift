@@ -26,7 +26,7 @@ class TableEventsTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        var query = "SELECT _id, name, starttime, response_user FROM fd_events WHERE starttime <= strftime('%s','now') ORDER BY starttime DESC"
+        var query = "SELECT _id, name, starttime, desc, response_user FROM fd_events WHERE starttime <= strftime('%s','now') ORDER BY starttime DESC"
         
         arrData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(query)
         println(arrData)
@@ -135,14 +135,26 @@ class TableEventsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "showFeedback" {
+            let FeedbackItemDetailViewController = segue.destinationViewController as FeedbackItemViewController
+            
+            // Get the cell that generated this segue.
+            if let selectedEventCell = sender as? UITableViewCell {
+                let indexPath = tableView.indexPathForCell(selectedEventCell)!
+                if let selectedEvent = arrData[indexPath.row] as? [String: String] {
+                    FeedbackItemDetailViewController.event = selectedEvent
+                }
+            }
+        }
     }
-    */
+    
 
 }
