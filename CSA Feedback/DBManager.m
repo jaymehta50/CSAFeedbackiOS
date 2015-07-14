@@ -109,9 +109,15 @@
                         // Convert the column data to text (characters).
                         char *dbDataAsChars = (char *)sqlite3_column_text(compiledStatement, i);
                         
-                        if (dbColNameAsChars != NULL || dbDataAsChars != NULL) {
+                        if (dbColNameAsChars != NULL) {
                             // If there are contents in the currenct column (field) then add them to the current row array.
+                            
+                            if (dbDataAsChars != NULL) {
                             arrDataRow[[NSString stringWithUTF8String:dbColNameAsChars]] = [NSString stringWithUTF8String:dbDataAsChars];
+                            }
+                            else {
+                                arrDataRow[[NSString stringWithUTF8String:dbColNameAsChars]] = @"";
+                            }
                         }
                         
                         
@@ -130,8 +136,8 @@
                 // This is the case of an executable query (insert, update, ...).
                 
                 // Execute the query.
-                BOOL executeQueryResults = sqlite3_step(compiledStatement);
-                if (executeQueryResults == SQLITE_OK) {
+                int executeQueryResults = sqlite3_step(compiledStatement);
+                if (executeQueryResults == SQLITE_OK || executeQueryResults == SQLITE_DONE) {
                     // Keep the affected rows.
                     self.affectedRows = sqlite3_changes(sqlite3Database);
                     

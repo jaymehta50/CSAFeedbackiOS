@@ -12,6 +12,7 @@ import UIKit
 class TableEventsTableViewController: UITableViewController {
     
     var arrData:NSArray = []
+    var authtoken = "X18sxh9eO0DvW6Fk4y0d5UHmsRd3AzEHiv0MAPDXpwnRqYwjL2KporcAVSotB5nSNZ9kx346E6seLgC4iKuInBl2M1COQX7JG1W5qzcDtLYzkpWfISyMVFTHaJQajYGc"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class TableEventsTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        var query = "SELECT name, desc FROM fd_events"
+        var query = "SELECT name, starttime FROM fd_events WHERE starttime <= strftime('%s','now') ORDER BY starttime DESC"
         
         arrData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(query)
         println(arrData)
@@ -34,9 +35,13 @@ class TableEventsTableViewController: UITableViewController {
         refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl!)
+        
+        println(SyncManager().valid_user(authtoken))
     }
     
     func refresh(sender:AnyObject) {
+        SyncManager().syncup(authtoken)
+        SyncManager().syncdown(authtoken)
         refreshControl!.endRefreshing()
     }
 
@@ -59,14 +64,21 @@ class TableEventsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("idCellRecord", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("idCellRecord", forIndexPath: indexPath) as UITableViewCell
 
         let row = indexPath.row
-        if let value = arrData[row]["name"] as? String {
-            cell.textLabel?.text = value
+        if let namevalue = arrData[row]["name"] as? String {
+            cell.textLabel?.text = namevalue
         }
-        if let value = arrData[row]["desc"] as? String {
-            cell.detailTextLabel?.text = value
+        println(arrData[row])
+        if let timevalue = arrData[row]["starttime"] as? NSString {
+            println("Yes!")
+            let timeint = NSTimeInterval(timevalue.doubleValue)
+            let date = NSDate(timeIntervalSince1970: timeint)
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+            dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+            cell.detailTextLabel?.text = dateFormatter.stringFromDate(date)
         }
 
         return cell
