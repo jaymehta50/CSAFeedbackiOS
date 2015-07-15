@@ -45,13 +45,16 @@ class SyncManager: NSObject {
         task.resume()
     }
     
-    func valid_user(authtoken:String) -> String {
+    func valid_user(authtoken:String) {
         let urlvaliduser = "http://jkm50.user.srcf.net/feedback/post/index.php"
         doPost(urlvaliduser, values: ["authtoken":authtoken]) { (succeeded: Bool, msg: NSData?) -> () in
             var respStr = NSString(data: msg!, encoding: NSUTF8StringEncoding)!
-            self.returnString = respStr as String
+            
+            if(respStr != "valid_user") {
+                let query = "UPDATE userinfo SET valid = 0 WHERE valid = 1"
+                self.dbm.executeQuery(query)
+            }
         }
-        return returnString
     }
     
     func syncup(authtoken: String) {

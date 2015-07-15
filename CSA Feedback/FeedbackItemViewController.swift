@@ -11,7 +11,7 @@ import UIKit
 class FeedbackItemViewController: UIViewController, UITextViewDelegate {
     
     var event:[String : String]!
-    let authtoken = "javMj36V4GZpCfRpYqQBTgtgSUhehi2i58Nvl7qr7f2bTodP3kTESaJD9YaKnO9MNPs5UUcSth0jON6YHWuZevoVwwFlW1DtbxIomWsLDEsIeJM4CdkAXKHxqzKy8m6G"
+    var authtoken:String!
     
     @IBOutlet weak var sessionName: UILabel!
     @IBOutlet weak var sessionDesc: UILabel!
@@ -32,6 +32,18 @@ class FeedbackItemViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var authquery = "SELECT authtoken FROM userinfo WHERE valid = 1"
+        var authData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(authquery) as [[String:String]]
+        println(authData)
+        if(authData.count == 0) {
+            println("Redirecting")
+            var vc: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("loginNavView")! as UINavigationController
+            presentViewController(vc, animated: true, completion: nil)
+            return
+        }
+        authtoken = authData[0]["authtoken"]!
+        
         textComment.delegate = self
         
         // Do any additional setup after loading the view.

@@ -12,10 +12,21 @@ import UIKit
 class TableEventsTableViewController: UITableViewController {
     
     var arrData:NSArray = []
-    let authtoken = "javMj36V4GZpCfRpYqQBTgtgSUhehi2i58Nvl7qr7f2bTodP3kTESaJD9YaKnO9MNPs5UUcSth0jON6YHWuZevoVwwFlW1DtbxIomWsLDEsIeJM4CdkAXKHxqzKy8m6G"
+    var authtoken:String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var authquery = "SELECT authtoken FROM userinfo WHERE valid = 1"
+        var authData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(authquery) as [[String:String]]
+        println(authData)
+        if(authData.count == 0) {
+            println("Redirecting")
+            var vc: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("loginNavView")! as UINavigationController
+            presentViewController(vc, animated: true, completion: nil)
+            return
+        }
+        authtoken = authData[0]["authtoken"]!
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -34,12 +45,29 @@ class TableEventsTableViewController: UITableViewController {
         refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl!)
-        
-        println(SyncManager().valid_user(authtoken))
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.tableView.reloadData()
+        if(arrData.count == 0) {
+            refreshControl?.beginRefreshing()
+            var authquery = "SELECT authtoken FROM userinfo WHERE valid = 1"
+            var authData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(authquery) as [[String:String]]
+            println(authData)
+            if(authData.count == 0) {
+                println("Redirecting")
+                var vc: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("loginNavView")! as UINavigationController
+                presentViewController(vc, animated: true, completion: nil)
+                return
+            }
+            authtoken = authData[0]["authtoken"]!
+            SyncManager().syncup(authtoken)
+            SyncManager().syncdown(authtoken)
+            self.tableView.reloadData()
+            refreshControl!.endRefreshing()
+        }
+        else {
+            self.tableView.reloadData()
+        }
     }
     
     func refresh(sender:AnyObject) {
