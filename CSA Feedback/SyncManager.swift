@@ -12,6 +12,7 @@ class SyncManager: NSObject {
     
     var dbm:DBManager
     var returnString = ""
+    let hours:Double = 24
     
     override init() {
         dbm = DBManager(databaseFilename: "feedback.sql")
@@ -45,16 +46,31 @@ class SyncManager: NSObject {
         task.resume()
     }
     
-    func valid_user(authtoken:String) {
+    func overall_sync(full:Bool, authtoken:String) {
+        if(full) {
+            if (!valid_user(authtoken)) {
+                return
+            }
+        }
+        syncup(authtoken)
+        syncdown(authtoken)
+    }
+    
+    func valid_user(authtoken:String) -> Bool {
         let urlvaliduser = "http://jkm50.user.srcf.net/feedback/post/index.php"
+        var toreturn = false
         doPost(urlvaliduser, values: ["authtoken":authtoken]) { (succeeded: Bool, msg: NSData?) -> () in
             var respStr = NSString(data: msg!, encoding: NSUTF8StringEncoding)!
             
             if(respStr != "valid_user") {
-                let query = "UPDATE userinfo SET valid = 0 WHERE valid = 1"
-                self.dbm.executeQuery(query)
+                let invalidquery = "UPDATE userinfo SET valid = 0 WHERE valid = 1;"
+                self.dbm.executeQuery(invalidquery)
+                toreturn = false
+                return
             }
+            toreturn = true
         }
+        return toreturn
     }
     
     func syncup(authtoken: String) {
@@ -70,7 +86,7 @@ class SyncManager: NSObject {
         for item in arrData {
             if let temp = item as? NSMutableDictionary {
                 var temp2 = temp
-                temp2["comment"] = (temp["comment"] as String).stringByReplacingOccurrencesOfString("''", withString: "'")
+                temp2["comment"] = (temp["comment"] as! String).stringByReplacingOccurrencesOfString("''", withString: "'")
                 newArrData.addObject(temp2)
             }
             else {
@@ -91,14 +107,10 @@ class SyncManager: NSObject {
         self.doPost(urlsyncup, values: postData) { (succeeded: Bool, msg: NSData?) -> () in
             if(succeeded) {
                 if let value = arrData as? [[String: String]] {
-                    var updatequery = "UPDATE fd_feedback SET sync_status = 1 WHERE "
-                    var first = true
+                    var updatequery = "UPDATE fd_feedback SET sync_status = 1 WHERE event_id = "
                     for(var i=0; i<arrData.count; i++) {
-                        if(!first) { updatequery += " OR " }
-                        updatequery += "event_id = " + value[i]["event_id"]!
-                        first = false
+                        self.dbm.executeQuery(updatequery + value[i]["event_id"]! + ";")
                     }
-                    self.dbm.executeQuery(updatequery)
                 }
             }
         }
@@ -125,7 +137,7 @@ class SyncManager: NSObject {
                                 
                                 var insertquery = "INSERT INTO fd_events (_id, name, desc, starttime, endtime, responsible_person, response_user, response_name, response_text, response_time) VALUES ("
                                 
-                                insertquery += value["_ID"]! as String + ", "
+                                insertquery += value["_ID"]! as! String + ", "
                                 
                                 insertquery += "'" + value["name"]!.stringByReplacingOccurrencesOfString("'", withString: "''") + "', "
                                 
@@ -136,9 +148,9 @@ class SyncManager: NSObject {
                                     insertquery += "'', "
                                 }
                                 
-                                insertquery += value["starttime"]! as String + ", "
+                                insertquery += value["starttime"]! as! String + ", "
                                 
-                                insertquery += value["endtime"]! as String + ", "
+                                insertquery += value["endtime"]! as! String + ", "
                                 
                                 if let jsonstr = value["responsible_person"] as? String {
                                     insertquery += "'" + jsonstr.stringByReplacingOccurrencesOfString("'", withString: "''") + "', "
@@ -196,8 +208,8 @@ class SyncManager: NSObject {
                                 
                                 var insertquery = "INSERT INTO fd_feedback (event_id, score, comment, timestamp, notify_responses, sync_status) VALUES ("
                                 
-                                insertquery += value["event_id"]! as String + ", "
-                                insertquery += value["score"]! as String + ", "
+                                insertquery += value["event_id"]! as! String + ", "
+                                insertquery += value["score"]! as! String + ", "
                                 
                                 if let jsonstr = value["comment"] as? String {
                                     insertquery += "'" + jsonstr.stringByReplacingOccurrencesOfString("'", withString: "''") + "', "
@@ -206,8 +218,8 @@ class SyncManager: NSObject {
                                     insertquery += "'', "
                                 }
                                 
-                                insertquery += value["timestamp"]! as String + ", "
-                                insertquery += value["notify_responses"]! as String + ", "
+                                insertquery += value["timestamp"]! as! String + ", "
+                                insertquery += value["notify_responses"]! as! String + ", "
                                 insertquery += "1);"
                                 
                                 self.dbm.executeQuery(insertquery)

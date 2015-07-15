@@ -34,11 +34,11 @@ class FeedbackItemViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         var authquery = "SELECT authtoken FROM userinfo WHERE valid = 1"
-        var authData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(authquery) as [[String:String]]
+        var authData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(authquery) as! [[String:String]]
         println(authData)
         if(authData.count == 0) {
             println("Redirecting")
-            var vc: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("loginNavView")! as UINavigationController
+            var vc: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("loginNavView")! as! UINavigationController
             presentViewController(vc, animated: true, completion: nil)
             return
         }
@@ -69,20 +69,26 @@ class FeedbackItemViewController: UIViewController, UITextViewDelegate {
         }
         
         var query = "SELECT score, comment FROM fd_feedback WHERE event_id = " + event["_id"]!
-        fdreturned = NSMutableArray(array: DBManager(databaseFilename: "feedback.sql").loadDataFromDB(query) as [[String: String]])
+        fdreturned = NSMutableArray(array: DBManager(databaseFilename: "feedback.sql").loadDataFromDB(query) as! [[String: String]])
         
         doUIFormatting()
     }
     
+    @IBOutlet weak var scoreSliderHeight: NSLayoutConstraint!
+    @IBOutlet weak var consUnderSlider: NSLayoutConstraint!
+    @IBOutlet weak var constAboveSlider: NSLayoutConstraint!
     func doUIFormatting() {
         if (fdreturned.count >= 1) {
-            scoreText.text = (fdreturned[0]["score"] as String)
+            scoreText.text = (fdreturned[0]["score"] as! String)
             scoreSlider.hidden = true
+            scoreSliderHeight.constant = 0
+            constAboveSlider.constant = 0
+            consUnderSlider.constant = 0
             notifyText.hidden = true
             cbresponse.hidden = true
             textComment.hidden = false
-            if (fdreturned[0]["comment"] as String != "") {
-                textComment.text = (fdreturned[0]["comment"] as String).stringByReplacingOccurrencesOfString("''", withString: "'")
+            if (fdreturned[0]["comment"] as! String != "") {
+                textComment.text = (fdreturned[0]["comment"] as! String).stringByReplacingOccurrencesOfString("''", withString: "'")
                 textComment.editable = false
                 saveButtonOutlet.hidden = true
             }

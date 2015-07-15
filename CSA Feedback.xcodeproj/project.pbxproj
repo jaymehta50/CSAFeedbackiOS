@@ -16,11 +16,11 @@
 		693AD8091B51AECF00B82947 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 693AD8081B51AECF00B82947 /* DBManager.m */; };
 		693AD80D1B51B9F300B82947 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 693AD80C1B51B9F300B82947 /* libsqlite3.dylib */; };
 		693AD80F1B51BC4500B82947 /* TableEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693AD80E1B51BC4500B82947 /* TableEventsTableViewController.swift */; };
+		697F7C461B570D0B0028CE17 /* feedback.sql in Resources */ = {isa = PBXBuildFile; fileRef = 697F7C451B570D0B0028CE17 /* feedback.sql */; };
 		69E6E5921B52BA9D003E9A60 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E6E5911B52BA9C003E9A60 /* SyncManager.swift */; };
 		D47A32371B556FAD0065CF02 /* FeedbackItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47A32361B556FAD0065CF02 /* FeedbackItemViewController.swift */; };
 		D4CA18BE1B56D0C700D1A79A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CA18BD1B56D0C700D1A79A /* LoginViewController.swift */; };
 		D4CA18C01B56D34C00D1A79A /* ravenlogowhite.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CA18BF1B56D34C00D1A79A /* ravenlogowhite.png */; };
-		D4CA18C61B56F0A000D1A79A /* feedback.sql in Resources */ = {isa = PBXBuildFile; fileRef = D4CA18C51B56F0A000D1A79A /* feedback.sql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,11 +49,11 @@
 		693AD8081B51AECF00B82947 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		693AD80C1B51B9F300B82947 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		693AD80E1B51BC4500B82947 /* TableEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableEventsTableViewController.swift; sourceTree = "<group>"; };
+		697F7C451B570D0B0028CE17 /* feedback.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = feedback.sql; sourceTree = "<group>"; };
 		69E6E5911B52BA9C003E9A60 /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		D47A32361B556FAD0065CF02 /* FeedbackItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackItemViewController.swift; sourceTree = "<group>"; };
 		D4CA18BD1B56D0C700D1A79A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D4CA18BF1B56D34C00D1A79A /* ravenlogowhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ravenlogowhite.png; sourceTree = "<group>"; };
-		D4CA18C51B56F0A000D1A79A /* feedback.sql */ = {isa = PBXFileReference; lastKnownFileType = file; name = feedback.sql; path = ../feedback.sql; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +97,6 @@
 		693AD7E31B51ADDF00B82947 /* CSA Feedback */ = {
 			isa = PBXGroup;
 			children = (
-				D4CA18C51B56F0A000D1A79A /* feedback.sql */,
 				693AD7E61B51ADDF00B82947 /* AppDelegate.swift */,
 				693AD8071B51AECF00B82947 /* DBManager.h */,
 				693AD8081B51AECF00B82947 /* DBManager.m */,
@@ -118,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				693AD8061B51AECF00B82947 /* CSA Feedback-Bridging-Header.h */,
+				697F7C451B570D0B0028CE17 /* feedback.sql */,
 				D4CA18BF1B56D34C00D1A79A /* ravenlogowhite.png */,
 				693AD7E51B51ADDF00B82947 /* Info.plist */,
 			);
@@ -225,7 +225,7 @@
 				693AD7F11B51ADDF00B82947 /* LaunchScreen.xib in Resources */,
 				693AD7EE1B51ADDF00B82947 /* Images.xcassets in Resources */,
 				D4CA18C01B56D34C00D1A79A /* ravenlogowhite.png in Resources */,
-				D4CA18C61B56F0A000D1A79A /* feedback.sql in Resources */,
+				697F7C461B570D0B0028CE17 /* feedback.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
