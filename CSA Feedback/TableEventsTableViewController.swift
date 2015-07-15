@@ -12,7 +12,7 @@ import UIKit
 class TableEventsTableViewController: UITableViewController {
     
     var arrData:NSArray = []
-    var authtoken = "X18sxh9eO0DvW6Fk4y0d5UHmsRd3AzEHiv0MAPDXpwnRqYwjL2KporcAVSotB5nSNZ9kx346E6seLgC4iKuInBl2M1COQX7JG1W5qzcDtLYzkpWfISyMVFTHaJQajYGc"
+    var authtoken = "javMj36V4GZpCfRpYqQBTgtgSUhehi2i58Nvl7qr7f2bTodP3kTESaJD9YaKnO9MNPs5UUcSth0jON6YHWuZevoVwwFlW1DtbxIomWsLDEsIeJM4CdkAXKHxqzKy8m6G"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class TableEventsTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        var query = "SELECT _id, name, starttime, desc, response_user FROM fd_events WHERE starttime <= strftime('%s','now') ORDER BY starttime DESC"
+        var query = "SELECT _id, name, starttime, desc, response_name, response_text, response_time FROM fd_events WHERE starttime <= strftime('%s','now') ORDER BY starttime DESC"
         
         arrData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(query)
         println(arrData)
@@ -82,19 +82,21 @@ class TableEventsTableViewController: UITableViewController {
         }
         
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        if let resp_user = arrData[row]["response_user"] as? String {
+        cell.tintColor = UIColor.grayColor()
+        if let resp_user = arrData[row]["response_text"] as? String {
             if (resp_user != "") {
+                cell.tintColor = UIColor.blueColor()
                 cell.accessoryType = UITableViewCellAccessoryType.DetailDisclosureButton
             }
             else if let fdid = arrData[row]["_id"] as? String {
                 var query = "SELECT _id FROM fd_feedback WHERE event_id = " + fdid
                 var fdreturned = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(query)
                 if (fdreturned.count >= 1) {
+                    cell.tintColor = UIColor.greenColor()
                     cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                 }
             }
         }
-        
         
 
         return cell
