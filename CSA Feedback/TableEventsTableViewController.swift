@@ -12,7 +12,7 @@ import UIKit
 class TableEventsTableViewController: UITableViewController {
     
     var arrData:NSArray = []
-    var authtoken = "javMj36V4GZpCfRpYqQBTgtgSUhehi2i58Nvl7qr7f2bTodP3kTESaJD9YaKnO9MNPs5UUcSth0jON6YHWuZevoVwwFlW1DtbxIomWsLDEsIeJM4CdkAXKHxqzKy8m6G"
+    let authtoken = "javMj36V4GZpCfRpYqQBTgtgSUhehi2i58Nvl7qr7f2bTodP3kTESaJD9YaKnO9MNPs5UUcSth0jON6YHWuZevoVwwFlW1DtbxIomWsLDEsIeJM4CdkAXKHxqzKy8m6G"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,6 @@ class TableEventsTableViewController: UITableViewController {
         var query = "SELECT _id, name, starttime, desc, response_name, response_text, response_time FROM fd_events WHERE starttime <= strftime('%s','now') ORDER BY starttime DESC"
         
         arrData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(query)
-        println(arrData)
         
         refreshControl = UIRefreshControl()
         refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -39,9 +38,15 @@ class TableEventsTableViewController: UITableViewController {
         println(SyncManager().valid_user(authtoken))
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     func refresh(sender:AnyObject) {
+        println("Refreshing")
         SyncManager().syncup(authtoken)
         SyncManager().syncdown(authtoken)
+        self.tableView.reloadData()
         refreshControl!.endRefreshing()
     }
 
@@ -67,12 +72,11 @@ class TableEventsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("idCellRecord", forIndexPath: indexPath) as UITableViewCell
 
         let row = indexPath.row
+        println("Running cell: \(row)")
         if let namevalue = arrData[row]["name"] as? String {
-            cell.textLabel?.text = namevalue
+            cell.textLabel?.text = namevalue.stringByReplacingOccurrencesOfString("''", withString: "'")
         }
-        println(arrData[row])
         if let timevalue = arrData[row]["starttime"] as? NSString {
-            println("Yes!")
             let timeint = NSTimeInterval(timevalue.doubleValue)
             let date = NSDate(timeIntervalSince1970: timeint)
             let dateFormatter = NSDateFormatter()

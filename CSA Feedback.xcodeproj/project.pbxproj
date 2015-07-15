@@ -17,7 +17,6 @@
 		693AD80D1B51B9F300B82947 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 693AD80C1B51B9F300B82947 /* libsqlite3.dylib */; };
 		693AD80F1B51BC4500B82947 /* TableEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693AD80E1B51BC4500B82947 /* TableEventsTableViewController.swift */; };
 		69E6E5921B52BA9D003E9A60 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E6E5911B52BA9C003E9A60 /* SyncManager.swift */; };
-		D44873F81B568480003D7142 /* FeedbackItem2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44873F71B568480003D7142 /* FeedbackItem2ViewController.swift */; };
 		D47A32351B555DD70065CF02 /* feedback.sql in Resources */ = {isa = PBXBuildFile; fileRef = D47A32341B555DD70065CF02 /* feedback.sql */; };
 		D47A32371B556FAD0065CF02 /* FeedbackItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47A32361B556FAD0065CF02 /* FeedbackItemViewController.swift */; };
 /* End PBXBuildFile section */
@@ -49,7 +48,6 @@
 		693AD80C1B51B9F300B82947 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		693AD80E1B51BC4500B82947 /* TableEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableEventsTableViewController.swift; sourceTree = "<group>"; };
 		69E6E5911B52BA9C003E9A60 /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
-		D44873F71B568480003D7142 /* FeedbackItem2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackItem2ViewController.swift; sourceTree = "<group>"; };
 		D47A32341B555DD70065CF02 /* feedback.sql */ = {isa = PBXFileReference; lastKnownFileType = file; name = feedback.sql; path = ../feedback.sql; sourceTree = "<group>"; };
 		D47A32361B556FAD0065CF02 /* FeedbackItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,7 +100,6 @@
 				693AD7E81B51ADDF00B82947 /* ViewController.swift */,
 				D47A32361B556FAD0065CF02 /* FeedbackItemViewController.swift */,
 				693AD7EA1B51ADDF00B82947 /* Main.storyboard */,
-				D44873F71B568480003D7142 /* FeedbackItem2ViewController.swift */,
 				693AD80E1B51BC4500B82947 /* TableEventsTableViewController.swift */,
 				69E6E5911B52BA9C003E9A60 /* SyncManager.swift */,
 				693AD7ED1B51ADDF00B82947 /* Images.xcassets */,
@@ -245,7 +242,6 @@
 				693AD7E71B51ADDF00B82947 /* AppDelegate.swift in Sources */,
 				D47A32371B556FAD0065CF02 /* FeedbackItemViewController.swift in Sources */,
 				693AD80F1B51BC4500B82947 /* TableEventsTableViewController.swift in Sources */,
-				D44873F81B568480003D7142 /* FeedbackItem2ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
