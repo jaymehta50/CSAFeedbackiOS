@@ -17,6 +17,7 @@
 		693AD80D1B51B9F300B82947 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 693AD80C1B51B9F300B82947 /* libsqlite3.dylib */; };
 		693AD80F1B51BC4500B82947 /* TableEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693AD80E1B51BC4500B82947 /* TableEventsTableViewController.swift */; };
 		697F7C461B570D0B0028CE17 /* feedback.sql in Resources */ = {isa = PBXBuildFile; fileRef = 697F7C451B570D0B0028CE17 /* feedback.sql */; };
+		697F7C481B572DE00028CE17 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 697F7C471B572DE00028CE17 /* Launch Screen.xib */; };
 		69E6E5921B52BA9D003E9A60 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E6E5911B52BA9C003E9A60 /* SyncManager.swift */; };
 		D47A32371B556FAD0065CF02 /* FeedbackItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47A32361B556FAD0065CF02 /* FeedbackItemViewController.swift */; };
 		D4CA18BE1B56D0C700D1A79A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CA18BD1B56D0C700D1A79A /* LoginViewController.swift */; };
@@ -50,6 +51,7 @@
 		693AD80C1B51B9F300B82947 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		693AD80E1B51BC4500B82947 /* TableEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableEventsTableViewController.swift; sourceTree = "<group>"; };
 		697F7C451B570D0B0028CE17 /* feedback.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = feedback.sql; sourceTree = "<group>"; };
+		697F7C471B572DE00028CE17 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		69E6E5911B52BA9C003E9A60 /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		D47A32361B556FAD0065CF02 /* FeedbackItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackItemViewController.swift; sourceTree = "<group>"; };
 		D4CA18BD1B56D0C700D1A79A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				693AD80E1B51BC4500B82947 /* TableEventsTableViewController.swift */,
 				69E6E5911B52BA9C003E9A60 /* SyncManager.swift */,
 				693AD7ED1B51ADDF00B82947 /* Images.xcassets */,
+				697F7C471B572DE00028CE17 /* Launch Screen.xib */,
 				693AD7EF1B51ADDF00B82947 /* LaunchScreen.xib */,
 				693AD7E41B51ADDF00B82947 /* Supporting Files */,
 			);
@@ -190,6 +193,7 @@
 				TargetAttributes = {
 					693AD7E01B51ADDF00B82947 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = SSL5766YA3;
 					};
 					693AD7F51B51ADDF00B82947 = {
 						CreatedOnToolsVersion = 6.4;
@@ -226,6 +230,7 @@
 				693AD7EE1B51ADDF00B82947 /* Images.xcassets in Resources */,
 				D4CA18C01B56D34C00D1A79A /* ravenlogowhite.png in Resources */,
 				697F7C461B570D0B0028CE17 /* feedback.sql in Resources */,
+				697F7C481B572DE00028CE17 /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,8 +384,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "CSA Feedback/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CSA Feedback/CSA Feedback-Bridging-Header.h";
@@ -393,8 +399,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "CSA Feedback/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CSA Feedback/CSA Feedback-Bridging-Header.h";
