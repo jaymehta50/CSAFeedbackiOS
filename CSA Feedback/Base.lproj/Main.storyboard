@@ -204,9 +204,6 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="RvD-Tc-TGd" secondAttribute="bottom" id="ZzG-KD-vNu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RvD-Tc-TGd" secondAttribute="trailing" id="nyu-1W-3WB"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="directionalLockEnabled" value="YES"/>
-                        </userDefinedRuntimeAttributes>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="U2W-X9-7jU"/>
