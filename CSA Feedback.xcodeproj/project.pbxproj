@@ -15,6 +15,8 @@
 		693AD8091B51AECF00B82947 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 693AD8081B51AECF00B82947 /* DBManager.m */; };
 		693AD80D1B51B9F300B82947 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 693AD80C1B51B9F300B82947 /* libsqlite3.dylib */; };
 		693AD80F1B51BC4500B82947 /* TableEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693AD80E1B51BC4500B82947 /* TableEventsTableViewController.swift */; };
+		69583C051B584CAC002A171E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69583C031B584CAC002A171E /* Fabric.framework */; };
+		69583C061B584CAC002A171E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69583C041B584CAC002A171E /* Crashlytics.framework */; };
 		697F7C461B570D0B0028CE17 /* feedback.sql in Resources */ = {isa = PBXBuildFile; fileRef = 697F7C451B570D0B0028CE17 /* feedback.sql */; };
 		697F7C481B572DE00028CE17 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 697F7C471B572DE00028CE17 /* Launch Screen.xib */; };
 		69E6E5921B52BA9D003E9A60 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E6E5911B52BA9C003E9A60 /* SyncManager.swift */; };
@@ -48,6 +50,8 @@
 		693AD8081B51AECF00B82947 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		693AD80C1B51B9F300B82947 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		693AD80E1B51BC4500B82947 /* TableEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableEventsTableViewController.swift; sourceTree = "<group>"; };
+		69583C031B584CAC002A171E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		69583C041B584CAC002A171E /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		697F7C451B570D0B0028CE17 /* feedback.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = feedback.sql; sourceTree = "<group>"; };
 		697F7C471B572DE00028CE17 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		69E6E5911B52BA9C003E9A60 /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				693AD80D1B51B9F300B82947 /* libsqlite3.dylib in Frameworks */,
+				69583C061B584CAC002A171E /* Crashlytics.framework in Frameworks */,
+				69583C051B584CAC002A171E /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +88,8 @@
 				693AD7E31B51ADDF00B82947 /* CSA Feedback */,
 				693AD7F91B51ADDF00B82947 /* CSA FeedbackTests */,
 				693AD7E21B51ADDF00B82947 /* Products */,
+				69583C031B584CAC002A171E /* Fabric.framework */,
+				69583C041B584CAC002A171E /* Crashlytics.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,6 +159,7 @@
 				693AD7DD1B51ADDF00B82947 /* Sources */,
 				693AD7DE1B51ADDF00B82947 /* Frameworks */,
 				693AD7DF1B51ADDF00B82947 /* Resources */,
+				69583C021B584C21002A171E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -238,6 +247,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		69583C021B584C21002A171E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 5a90aeada31815cbbfbf2f2fda668283ba908e9f 0bdd0efadf26abbd4c86613f24687f421e804be4b4141cc535bf5977184088ab";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		693AD7DD1B51ADDF00B82947 /* Sources */ = {
@@ -374,6 +399,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "CSA Feedback/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -391,6 +420,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "CSA Feedback/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

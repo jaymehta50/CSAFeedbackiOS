@@ -40,8 +40,8 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         var url = request.URL
         println(url)
-        if(url.scheme == "closeWebView") {
-            var params = url.absoluteString!
+        if(url!.scheme == "closeWebView") {
+            var params = url!.absoluteString!
             var params2 = params
             println(params)
             var range = params.rangeOfString("(?<=crsid=)[^&]+(?=&)", options:.RegularExpressionSearch)

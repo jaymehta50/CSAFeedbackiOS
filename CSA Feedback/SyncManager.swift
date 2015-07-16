@@ -86,7 +86,7 @@ class SyncManager: NSObject {
         for item in arrData {
             if let temp = item as? NSMutableDictionary {
                 var temp2 = temp
-                var str:String = temp["comment"]! as String
+                var str:String = temp["comment"]! as! String
                 temp2["comment"] = str.stringByReplacingOccurrencesOfString("''", withString: "'") as String
                 newArrData.addObject(temp2)
             }
@@ -138,7 +138,7 @@ class SyncManager: NSObject {
                                 
                                 var insertquery = "INSERT INTO fd_events (_id, name, desc, starttime, endtime, responsible_person, response_user, response_name, response_text, response_time) VALUES ("
                                 
-                                insertquery += value["_ID"]! as String + ", "
+                                insertquery += value["_ID"]! as! String + ", "
                                 
                                 insertquery += "'" + value["name"]!.stringByReplacingOccurrencesOfString("'", withString: "''") + "', "
                                 
@@ -149,9 +149,9 @@ class SyncManager: NSObject {
                                     insertquery += "'', "
                                 }
                                 
-                                insertquery += value["starttime"]! as String + ", "
+                                insertquery += value["starttime"]! as! String + ", "
                                 
-                                insertquery += value["endtime"]! as String + ", "
+                                insertquery += value["endtime"]! as! String + ", "
                                 
                                 if let jsonstr = value["responsible_person"] as? String {
                                     insertquery += "'" + jsonstr.stringByReplacingOccurrencesOfString("'", withString: "''") + "', "
@@ -209,8 +209,8 @@ class SyncManager: NSObject {
                                 
                                 var insertquery = "INSERT INTO fd_feedback (event_id, score, comment, timestamp, notify_responses, sync_status) VALUES ("
                                 
-                                insertquery += value["event_id"]! as String + ", "
-                                insertquery += value["score"]! as String + ", "
+                                insertquery += value["event_id"]! as! String + ", "
+                                insertquery += value["score"]! as! String + ", "
                                 
                                 if let jsonstr = value["comment"] as? String {
                                     insertquery += "'" + jsonstr.stringByReplacingOccurrencesOfString("'", withString: "''") + "', "
@@ -219,8 +219,8 @@ class SyncManager: NSObject {
                                     insertquery += "'', "
                                 }
                                 
-                                insertquery += value["timestamp"]! as String + ", "
-                                insertquery += value["notify_responses"]! as String + ", "
+                                insertquery += value["timestamp"]! as! String + ", "
+                                insertquery += value["notify_responses"]! as! String + ", "
                                 insertquery += "1);"
                                 
                                 self.dbm.executeQuery(insertquery)
