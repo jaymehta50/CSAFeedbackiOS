@@ -11,7 +11,6 @@
 		693AD7E91B51ADDF00B82947 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693AD7E81B51ADDF00B82947 /* ViewController.swift */; };
 		693AD7EC1B51ADDF00B82947 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 693AD7EA1B51ADDF00B82947 /* Main.storyboard */; };
 		693AD7EE1B51ADDF00B82947 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 693AD7ED1B51ADDF00B82947 /* Images.xcassets */; };
-		693AD7F11B51ADDF00B82947 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 693AD7EF1B51ADDF00B82947 /* LaunchScreen.xib */; };
 		693AD7FD1B51ADDF00B82947 /* CSA_FeedbackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693AD7FC1B51ADDF00B82947 /* CSA_FeedbackTests.swift */; };
 		693AD8091B51AECF00B82947 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 693AD8081B51AECF00B82947 /* DBManager.m */; };
 		693AD80D1B51B9F300B82947 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 693AD80C1B51B9F300B82947 /* libsqlite3.dylib */; };
@@ -41,7 +40,6 @@
 		693AD7E81B51ADDF00B82947 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		693AD7EB1B51ADDF00B82947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		693AD7ED1B51ADDF00B82947 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		693AD7F01B51ADDF00B82947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		693AD7F61B51ADDF00B82947 /* CSA FeedbackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CSA FeedbackTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		693AD7FB1B51ADDF00B82947 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		693AD7FC1B51ADDF00B82947 /* CSA_FeedbackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSA_FeedbackTests.swift; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 				69E6E5911B52BA9C003E9A60 /* SyncManager.swift */,
 				693AD7ED1B51ADDF00B82947 /* Images.xcassets */,
 				697F7C471B572DE00028CE17 /* Launch Screen.xib */,
-				693AD7EF1B51ADDF00B82947 /* LaunchScreen.xib */,
 				693AD7E41B51ADDF00B82947 /* Supporting Files */,
 			);
 			path = "CSA Feedback";
@@ -226,7 +223,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				693AD7EC1B51ADDF00B82947 /* Main.storyboard in Resources */,
-				693AD7F11B51ADDF00B82947 /* LaunchScreen.xib in Resources */,
 				693AD7EE1B51ADDF00B82947 /* Images.xcassets in Resources */,
 				D4CA18C01B56D34C00D1A79A /* ravenlogowhite.png in Resources */,
 				697F7C461B570D0B0028CE17 /* feedback.sql in Resources */,
@@ -283,14 +279,6 @@
 				693AD7EB1B51ADDF00B82947 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		693AD7EF1B51ADDF00B82947 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				693AD7F01B51ADDF00B82947 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -382,13 +370,15 @@
 		693AD8011B51ADDF00B82947 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "CSA Feedback/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CSA Feedback/CSA Feedback-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -397,13 +387,15 @@
 		693AD8021B51ADDF00B82947 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "CSA Feedback/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CSA Feedback/CSA Feedback-Bridging-Header.h";
 			};
 			name = Release;

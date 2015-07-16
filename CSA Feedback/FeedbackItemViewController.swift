@@ -19,6 +19,9 @@ class FeedbackItemViewController: UIViewController, UITextViewDelegate, UIScroll
     @IBOutlet weak var csresponse: UILabel!
     @IBOutlet weak var csresponsenametime: UILabel!
     
+    @IBOutlet var overallView: UIView!
+    @IBOutlet weak var container: UIView!
+    @IBOutlet weak var response_container: UIView!
     @IBOutlet weak var scoreSlider: UISlider!
     @IBOutlet weak var scoreText: UILabel!
     @IBOutlet weak var cbresponse: UISwitch!
@@ -33,12 +36,19 @@ class FeedbackItemViewController: UIViewController, UITextViewDelegate, UIScroll
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var leftConstraint:NSLayoutConstraint = NSLayoutConstraint(item: container, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: overallView, attribute: NSLayoutAttribute.Left, multiplier: 1.0, constant: 0)
+        
+        var rightConstraint:NSLayoutConstraint = NSLayoutConstraint(item: container, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: overallView, attribute: NSLayoutAttribute.Right, multiplier: 1.0, constant: 0)
+        
+        overallView.addConstraint(leftConstraint)
+        overallView.addConstraint(rightConstraint)
+        
         var authquery = "SELECT authtoken FROM userinfo WHERE valid = 1"
-        var authData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(authquery) as! [[String:String]]
+        var authData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(authquery) as [[String:String]]
         println(authData)
         if(authData.count == 0) {
             println("Redirecting")
-            var vc: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("loginNavView")! as! UINavigationController
+            var vc: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("loginNavView")! as UINavigationController
             presentViewController(vc, animated: true, completion: nil)
             return
         }
@@ -59,6 +69,7 @@ class FeedbackItemViewController: UIViewController, UITextViewDelegate, UIScroll
         sessionDateTime.text = dateFormatter.stringFromDate(date)
         
         if(event["response_text"] != "") {
+            response_container.hidden = false
             csresponse.hidden = false
             csresponse.text = event["response_text"]!.stringByReplacingOccurrencesOfString("''", withString: "'")
             let respstr:NSString = event["response_time"]!
@@ -69,7 +80,7 @@ class FeedbackItemViewController: UIViewController, UITextViewDelegate, UIScroll
         }
         
         var query = "SELECT score, comment FROM fd_feedback WHERE event_id = " + event["_id"]!
-        fdreturned = NSMutableArray(array: DBManager(databaseFilename: "feedback.sql").loadDataFromDB(query) as! [[String: String]])
+        fdreturned = NSMutableArray(array: DBManager(databaseFilename: "feedback.sql").loadDataFromDB(query) as [[String: String]]!)
         
         doUIFormatting()
     }
@@ -79,7 +90,7 @@ class FeedbackItemViewController: UIViewController, UITextViewDelegate, UIScroll
 //    @IBOutlet weak var constAboveSlider: NSLayoutConstraint!
     func doUIFormatting() {
         if (fdreturned.count >= 1) {
-            scoreText.text = (fdreturned[0]["score"] as! String)
+            scoreText.text = (fdreturned[0]["score"]! as String)
             scoreSlider.hidden = true
 //            scoreSliderHeight.constant = 0
 //            constAboveSlider.constant = 0
@@ -87,8 +98,8 @@ class FeedbackItemViewController: UIViewController, UITextViewDelegate, UIScroll
             notifyText.hidden = true
             cbresponse.hidden = true
             textComment.hidden = false
-            if (fdreturned[0]["comment"] as! String != "") {
-                textComment.text = (fdreturned[0]["comment"] as! String).stringByReplacingOccurrencesOfString("''", withString: "'")
+            if ((fdreturned[0]["comment"]! as String) != "") {
+                textComment.text = (fdreturned[0]["comment"] as String).stringByReplacingOccurrencesOfString("''", withString: "'")
                 textComment.editable = false
                 saveButtonOutlet.hidden = true
             }

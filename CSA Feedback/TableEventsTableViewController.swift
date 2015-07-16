@@ -27,10 +27,10 @@ class TableEventsTableViewController: UITableViewController {
         self.tableView.addSubview(refreshControl!)
         
         var authquery = "SELECT authtoken FROM userinfo WHERE valid = 1"
-        var authData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(authquery) as! [[String:String]]
+        var authData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(authquery) as [[String:String]]
         if(authData.count == 0) {
             println("Redirecting")
-            var vc: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("loginNavView")! as! UINavigationController
+            var vc: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("loginNavView")! as UINavigationController
             presentViewController(vc, animated: true, completion: nil)
             return
         }
@@ -48,26 +48,26 @@ class TableEventsTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         refreshControl?.beginRefreshing()
         arrData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(query)
-        if(arrData.count == 0) {
-            println("Running refresh")
-            if(authtoken=="") {
-                var authquery = "SELECT authtoken FROM userinfo WHERE valid = 1"
-                var authData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(authquery) as! [[String:String]]
-                println(authData)
-                if(authData.count == 0) {
-                    //refreshControl!.endRefreshing()
-                    println("Redirecting")
-                    var vc: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("loginNavView")! as! UINavigationController
-                    presentViewController(vc, animated: true, completion: nil)
-                    return
-                }
-                else {
-                    authtoken = authData[0]["authtoken"]!
-                }
-            }
-            SyncManager().overall_sync(false, authtoken: authtoken)
-            arrData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(query)
-        }
+//        if(arrData.count == 0) {
+//            println("Running refresh")
+//            if(authtoken=="") {
+//                var authquery = "SELECT authtoken FROM userinfo WHERE valid = 1"
+//                var authData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(authquery) as [[String:String]]
+//                println(authData)
+//                if(authData.count == 0) {
+//                    //refreshControl!.endRefreshing()
+//                    println("Redirecting")
+//                    var vc: UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("loginNavView")! as UINavigationController
+//                    presentViewController(vc, animated: true, completion: nil)
+//                    return
+//                }
+//                else {
+//                    authtoken = authData[0]["authtoken"]!
+//                }
+//            }
+//            SyncManager().overall_sync(false, authtoken: authtoken)
+//            arrData = DBManager(databaseFilename: "feedback.sql").loadDataFromDB(query)
+//        }
         self.tableView.reloadData()
         refreshControl?.endRefreshing()
     }
@@ -114,7 +114,7 @@ class TableEventsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("idCellRecord", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("idCellRecord", forIndexPath: indexPath) as UITableViewCell
 
         let row = indexPath.row
         println("Running cell: \(row)")
@@ -194,7 +194,7 @@ class TableEventsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "showFeedback" {
-            let FeedbackItemDetailViewController = segue.destinationViewController as! FeedbackItemViewController
+            let FeedbackItemDetailViewController = segue.destinationViewController as FeedbackItemViewController
             
             // Get the cell that generated this segue.
             if let selectedEventCell = sender as? UITableViewCell {
