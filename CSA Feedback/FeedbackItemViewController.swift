@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedbackItemViewController: UIViewController, UITextViewDelegate {
+class FeedbackItemViewController: UIViewController, UITextViewDelegate, UIScrollViewDelegate {
     
     var event:[String : String]!
     var authtoken:String!
@@ -74,16 +74,16 @@ class FeedbackItemViewController: UIViewController, UITextViewDelegate {
         doUIFormatting()
     }
     
-    @IBOutlet weak var scoreSliderHeight: NSLayoutConstraint!
-    @IBOutlet weak var consUnderSlider: NSLayoutConstraint!
-    @IBOutlet weak var constAboveSlider: NSLayoutConstraint!
+//    @IBOutlet weak var scoreSliderHeight: NSLayoutConstraint!
+//    @IBOutlet weak var consUnderSlider: NSLayoutConstraint!
+//    @IBOutlet weak var constAboveSlider: NSLayoutConstraint!
     func doUIFormatting() {
         if (fdreturned.count >= 1) {
             scoreText.text = (fdreturned[0]["score"] as! String)
             scoreSlider.hidden = true
-            scoreSliderHeight.constant = 0
-            constAboveSlider.constant = 0
-            consUnderSlider.constant = 0
+//            scoreSliderHeight.constant = 0
+//            constAboveSlider.constant = 0
+//            consUnderSlider.constant = 0
             notifyText.hidden = true
             cbresponse.hidden = true
             textComment.hidden = false
