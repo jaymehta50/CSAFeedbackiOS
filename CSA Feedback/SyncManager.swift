@@ -134,11 +134,12 @@ class SyncManager: NSObject {
                                 if (first) {
                                     let deletequery = "DELETE FROM fd_events;"
                                     self.dbm.executeQuery(deletequery)
+                                    UIApplication.sharedApplication().cancelAllLocalNotifications()
                                 }
                                 
                                 var insertquery = "INSERT INTO fd_events (_id, name, desc, starttime, endtime, responsible_person, response_user, response_name, response_text, response_time) VALUES ("
                                 
-                                insertquery += value["_ID"]! as! String + ", "
+                                insertquery += value["_id"]! as! String + ", "
                                 
                                 insertquery += "'" + value["name"]!.stringByReplacingOccurrencesOfString("'", withString: "''") + "', "
                                 
@@ -186,6 +187,18 @@ class SyncManager: NSObject {
                                 }
                                 else {
                                     insertquery += "'');"
+                                }
+                                
+                                var enddatetime:NSDate = NSDate(timeIntervalSince1970: NSTimeInterval((value["endtime"]! as! NSString).doubleValue))
+                                if(enddatetime.compare(NSDate(timeIntervalSinceNow: NSTimeInterval(0)))==NSComparisonResult.OrderedDescending) {
+                                    var notification = UILocalNotification()
+                                    notification.alertBody = "Leave feedback for " + (value["name"]! as! String) // text that will be displayed in the notification
+                                    notification.alertAction = "leave feedback" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+                                    notification.fireDate = enddatetime // todo item due date (when notification will be fired)
+                                    notification.soundName = UILocalNotificationDefaultSoundName // play default sound
+                                    //notification.userInfo = ["UUID": eventid] // assign a unique identifier to the notification so that we can retrieve it later
+                                    notification.category = "TODO_CATEGORY"
+                                    UIApplication.sharedApplication().scheduleLocalNotification(notification)
                                 }
                                 
                                 self.dbm.executeQuery(insertquery)
