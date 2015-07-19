@@ -29,7 +29,8 @@ class FeedbackItemViewController: UIViewController, UITextViewDelegate, UIScroll
     @IBOutlet weak var textComment: UITextView!
     
     @IBOutlet weak var saveButtonOutlet: UIButton!
-    var score = 5
+    var newscore:Float = 5
+    var score:Int = 5
     var feedbackData:[String:String]!
     var fdreturned:NSMutableArray!
     
@@ -117,9 +118,13 @@ class FeedbackItemViewController: UIViewController, UITextViewDelegate, UIScroll
         }
     }
 
-    @IBAction func scoreSlider(sender: UISlider) {
-        var newscore = roundf(sender.value)
+    @IBAction func scoreSliderEnded(sender: UISlider) {
+        newscore = roundf(sender.value)
         sender.value = newscore
+    }
+    
+    @IBAction func scoreSlider(sender: UISlider) {
+        newscore = roundf(sender.value)
         score = Int(newscore)
         scoreText.text = "\(score)"
     }
