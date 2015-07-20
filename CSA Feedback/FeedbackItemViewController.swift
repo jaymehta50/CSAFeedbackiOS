@@ -83,7 +83,14 @@ class FeedbackItemViewController: UIViewController, UITextViewDelegate, UIScroll
         var query = "SELECT score, comment FROM fd_feedback WHERE event_id = " + event["_id"]!
         fdreturned = NSMutableArray(array: DBManager(databaseFilename: "feedback.sql").loadDataFromDB(query) as! [[String: String]]!)
         
+        var tap = UITapGestureRecognizer(target: self, action:"DismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
         doUIFormatting()
+    }
+    
+    func DismissKeyboard() {
+        view.endEditing(true)
     }
     
 //    @IBOutlet weak var scoreSliderHeight: NSLayoutConstraint!

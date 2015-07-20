@@ -57,7 +57,7 @@ class SyncManager: NSObject {
     }
     
     func valid_user(authtoken:String) -> Bool {
-        let urlvaliduser = "http://jkm50.user.srcf.net/feedback/post/index.php"
+        let urlvaliduser = "https://apps.medschl.cam.ac.uk/post/index.php"
         var toreturn = false
         doPost(urlvaliduser, values: ["authtoken":authtoken]) { (succeeded: Bool, msg: NSData?) -> () in
             var respStr = NSString(data: msg!, encoding: NSUTF8StringEncoding)!
@@ -75,7 +75,7 @@ class SyncManager: NSObject {
     
     func syncup(authtoken: String) {
         println("Run sync up")
-        let urlsyncup = "http://jkm50.user.srcf.net/feedback/post/index.php/welcome/sync_up"
+        let urlsyncup = "https://apps.medschl.cam.ac.uk/post/index.php/welcome/sync_up"
         let query = "SELECT event_id, score, comment, timestamp, notify_responses FROM fd_feedback WHERE sync_status = 0"
         
         let arrData = dbm.loadDataFromDB(query)
@@ -119,7 +119,7 @@ class SyncManager: NSObject {
     
     func syncdown(authtoken: String) {
         println("Run sync down")
-        let urlsyncdown = "http://jkm50.user.srcf.net/feedback/post/index.php/welcome/sync_down"
+        let urlsyncdown = "https://apps.medschl.cam.ac.uk/post/index.php/welcome/sync_down"
         doPost(urlsyncdown, values: ["authtoken":authtoken]) { (succeeded: Bool, msg: NSData?) -> () in
             if(succeeded) {
                 var err:NSErrorPointer = nil

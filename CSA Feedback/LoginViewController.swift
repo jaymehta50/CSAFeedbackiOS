@@ -18,7 +18,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
 
         webviewlogin.delegate = self
         
-        webviewlogin.loadRequest(NSURLRequest(URL: NSURL(string: "http://jkm50.user.srcf.net/feedback/login/index.php/welcome/index/Fuzw2lg1GCyw2ZfH1jN8F1IMPszq4f69")!))
+        webviewlogin.loadRequest(NSURLRequest(URL: NSURL(string: "https://apps.medschl.cam.ac.uk/login/index.php/welcome/index/Fuzw2lg1GCyw2ZfH1jN8F1IMPszq4f69")!))
         // Do any additional setup after loading the view.
     }
 
